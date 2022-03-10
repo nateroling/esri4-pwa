@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1646931467863,
-  "index": "/index.html",
+  "timestamp": 1646932183135,
+  "index": "/esri4-pwa/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,13 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "/favicon.ico",
-        "/index.html",
-        "/main.e4005ccc6215e4ff.js",
-        "/manifest.webmanifest",
-        "/polyfills.7c918cd1f6597255.js",
-        "/runtime.485b8a77eef528b0.js",
-        "/styles.ef46db3751d8e999.css"
+        "/esri4-pwa/favicon.ico",
+        "/esri4-pwa/index.html",
+        "/esri4-pwa/main.e4005ccc6215e4ff.js",
+        "/esri4-pwa/manifest.webmanifest",
+        "/esri4-pwa/polyfills.7c918cd1f6597255.js",
+        "/esri4-pwa/runtime.485b8a77eef528b0.js",
+        "/esri4-pwa/styles.ef46db3751d8e999.css"
       ],
       "patterns": []
     },
@@ -29,35 +29,35 @@
         "ignoreVary": true
       },
       "urls": [
-        "/assets/icons/icon-128x128.png",
-        "/assets/icons/icon-144x144.png",
-        "/assets/icons/icon-152x152.png",
-        "/assets/icons/icon-192x192.png",
-        "/assets/icons/icon-384x384.png",
-        "/assets/icons/icon-512x512.png",
-        "/assets/icons/icon-72x72.png",
-        "/assets/icons/icon-96x96.png"
+        "/esri4-pwa/assets/icons/icon-128x128.png",
+        "/esri4-pwa/assets/icons/icon-144x144.png",
+        "/esri4-pwa/assets/icons/icon-152x152.png",
+        "/esri4-pwa/assets/icons/icon-192x192.png",
+        "/esri4-pwa/assets/icons/icon-384x384.png",
+        "/esri4-pwa/assets/icons/icon-512x512.png",
+        "/esri4-pwa/assets/icons/icon-72x72.png",
+        "/esri4-pwa/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "06c23cf26ef6d145db30e781ca206787fd26370a",
-    "/main.e4005ccc6215e4ff.js": "8cd82a7d2f85b7e2509b533c309e568907a8e6d3",
-    "/manifest.webmanifest": "ac6b27ab8dbe059c6174e3c573ca3ca9eab57e1e",
-    "/polyfills.7c918cd1f6597255.js": "3ce82730f9d317707834e1808971971f066c2b27",
-    "/runtime.485b8a77eef528b0.js": "d63f0d3c9eaf41e18fa369f14ebf0da5a94837be",
-    "/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "/esri4-pwa/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/esri4-pwa/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/esri4-pwa/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/esri4-pwa/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/esri4-pwa/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/esri4-pwa/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/esri4-pwa/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/esri4-pwa/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/esri4-pwa/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/esri4-pwa/index.html": "cc325f8afd35c65ec0e84eceaf030fa1dffcf2fd",
+    "/esri4-pwa/main.e4005ccc6215e4ff.js": "8cd82a7d2f85b7e2509b533c309e568907a8e6d3",
+    "/esri4-pwa/manifest.webmanifest": "ac6b27ab8dbe059c6174e3c573ca3ca9eab57e1e",
+    "/esri4-pwa/polyfills.7c918cd1f6597255.js": "3ce82730f9d317707834e1808971971f066c2b27",
+    "/esri4-pwa/runtime.485b8a77eef528b0.js": "d63f0d3c9eaf41e18fa369f14ebf0da5a94837be",
+    "/esri4-pwa/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
   },
   "navigationUrls": [
     {
