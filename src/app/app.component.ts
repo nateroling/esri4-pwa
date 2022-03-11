@@ -9,45 +9,59 @@ import BaseTileLayer from "@arcgis/core/layers/BaseTileLayer";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'esri4-pwa';
+  tilesRendered = 0;
+  zooming = false;
+  zoomInterval: any;
+  map!: Map;
+  view!: MapView;
 
   ngOnInit() {
-      var map = new Map({
+      this.map = new Map({
         basemap: "topo-vector"
       });
 
-       const view = new MapView({
+       this.view = new MapView({
         container: "viewDiv",
-        map: map,
+        map: this.map,
         center: [-118.80500, 34.02700], // longitude, latitude
       zoom: 13
       });
 
-      map.add(new MyCustomTileLayer());
-       
+      this.map.add(new MyCustomTileLayer(() => this.tilesRendered++));
+  }
 
+  startZooming() {
+    this.zooming = true;
+    this.zoomInterval = setInterval(() => {
+      let next = this.view.zoom - 1;
+      if (next === 0) next = 13;
+      this.view.zoom = next;
+    }, 250);
+  }
 
+  stopZooming() {
+    this.zooming = false;
+    clearInterval(this.zoomInterval);
   }
 }
 
 class MyCustomTileLayer extends BaseTileLayer {
-// This method fetches tiles for the specified level and size.
-// Override this method to process the data returned from the server.
+  constructor(private onRender: () => void) {
+    super();
+  }
+
   override fetchTile(level: number, row: number, col: number, options: any) {
+    // create a canvas with 2D rendering context
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    canvas.width = 200;
+    canvas.height = 200;
 
-      // create a canvas with 2D rendering context
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-      canvas.width = 200;
-      canvas.height = 200;
+    context!.beginPath();
+    context!.arc(100, 75, 50, 0, 2 * Math.PI);
+    context!.stroke();
 
-
-      context!.beginPath();
-context!.arc(100, 75, 50, 0, 2 * Math.PI);
-context!.stroke();
-
-
-
-      return Promise.resolve(canvas);
-    }
+    this.onRender();
+    return Promise.resolve(canvas);
+  }
 }
