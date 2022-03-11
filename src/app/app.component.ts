@@ -20,7 +20,7 @@ export class AppComponent {
 
   ngOnInit() {
       this.map = new Map({
-        basemap: "topo-vector"
+        basemap: "streets"
       });
 
        this.view = new MapView({
@@ -51,12 +51,11 @@ export class AppComponent {
 }
 
 class MyCustomTileLayer extends BaseTileLayer {
+  tileCanvas: HTMLCanvasElement;
+
   constructor(private onRender: () => void) {
     super();
-  }
 
-  override fetchTile(level: number, row: number, col: number, options: any) {
-    // create a canvas with 2D rendering context
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     canvas.width = 200;
@@ -66,7 +65,12 @@ class MyCustomTileLayer extends BaseTileLayer {
     context!.arc(100, 75, 50, 0, 2 * Math.PI);
     context!.stroke();
 
+    this.tileCanvas = canvas;
+  }
+
+  override fetchTile(level: number, row: number, col: number, options: any) {
+    // create a canvas with 2D rendering context
     this.onRender();
-    return Promise.resolve(canvas);
+    return Promise.resolve(this.tileCanvas);
   }
 }
