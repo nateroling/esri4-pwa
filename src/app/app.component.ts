@@ -3,6 +3,8 @@ import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import BaseTileLayer from "@arcgis/core/layers/BaseTileLayer";
 
+const startZoom = 20;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +13,7 @@ import BaseTileLayer from "@arcgis/core/layers/BaseTileLayer";
 export class AppComponent {
   tilesRendered = 0;
   zooming = false;
+  zoomLevel = 0;
   zoomInterval: any;
   map!: Map;
   view!: MapView;
@@ -24,7 +27,7 @@ export class AppComponent {
         container: "viewDiv",
         map: this.map,
         center: [-118.80500, 34.02700], // longitude, latitude
-      zoom: 13
+        zoom: startZoom
       });
 
       this.map.add(new MyCustomTileLayer(() => this.tilesRendered++));
@@ -32,9 +35,11 @@ export class AppComponent {
 
   startZooming() {
     this.zooming = true;
+    this.zoomLevel = this.view.zoom;
     this.zoomInterval = setInterval(() => {
       let next = this.view.zoom - 1;
-      if (next === 0) next = 13;
+      if (next === 0) next = startZoom;
+      this.zoomLevel = next;
       this.view.zoom = next;
     }, 250);
   }

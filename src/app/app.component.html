@@ -1,8 +1,13 @@
 <div id="viewDiv"></div>
 <div id="stats">
+  <p>
   Tiles generated: {{ tilesRendered }}
+  </p>  
   <div>
-  <button *ngIf="!zooming" (click)="startZooming()">Start Zooming</button>
-  <button *ngIf="zooming" (click)="stopZooming()">Stop Zooming</button>
+    <button *ngIf="!zooming" (click)="startZooming()">Start Zooming</button>
+    <button *ngIf="zooming" (click)="stopZooming()">Stop Zooming</button>
   </div>
+  <p *ngIf="zooming">
+  Zoom level: {{ zoomLevel }}
+  </p>
 </div>
