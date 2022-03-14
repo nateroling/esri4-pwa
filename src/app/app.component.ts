@@ -50,10 +50,7 @@ export class AppComponent {
   zoomInButton!: HTMLElement;
   zoomOutButton!: HTMLElement;
   zoomViaClick = true;
-
   zoomLen = 200;
-
-
 
   ngOnInit() {
       this.map = new Map({
@@ -71,10 +68,8 @@ export class AppComponent {
         this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
         this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
 
-
         // Start with one tile layer
         this.addTileLayer();
-
 
         // Start zooming on load
         this.startZooming();
@@ -114,7 +109,11 @@ export class AppComponent {
           { animate: this.animateZoom, duration: this.zoomLen / 2 }
         )
       } else {
-        (delta == 1 ? this.zoomOutButton : this.zoomInButton).click();
+        if (delta === 1) {
+          this.clickZoomOut();
+        } else {
+          this.clickZoomIn();
+        }
       }
 
       if (this.zooming) {
@@ -123,8 +122,20 @@ export class AppComponent {
     }
 
     doZoom();
+  }
 
+  clickZoomIn() {
+    if (!this.zoomInButton) {
+        this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
+    }
+    this.zoomInButton?.click();
+  }
 
+  clickZoomOut() {
+    if (!this.zoomOutButton) {
+        this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
+    }
+    this.zoomOutButton?.click();
   }
 
   stopZooming() {
