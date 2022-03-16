@@ -53,6 +53,7 @@ export class AppComponent {
   zoomLen = 200;
   zoomStart?: number;
   formattedDuration = "0 seconds...";
+  previousDuration = "";
 
   ngOnInit() {
     this.map = new Map({
@@ -96,11 +97,16 @@ export class AppComponent {
   startZooming() {
     let delta = 1;
 
+    this.previousDuration = localStorage.getItem("previousDuration") ?? "";
+
     this.zooming = true;
     this.zoomStart = Date.now();
 
     const doZoom = () => {
-      this.formattedDuration = formatDuration(Date.now() - this.zoomStart!);
+      const duration = Date.now() - this.zoomStart!
+      this.formattedDuration = formatDuration(duration);
+      localStorage.setItem("previousDuration", this.formattedDuration);
+
       let next = this.zoomLevel + delta;
       if (next <= 0 || next >= startZoom) {
         delta = -delta;
@@ -143,6 +149,7 @@ export class AppComponent {
   }
 
   stopZooming() {
+    this.previousDuration = localStorage.getItem("previousDuration") ?? "";
     this.zooming = false;
   }
 

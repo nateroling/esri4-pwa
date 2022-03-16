@@ -1,5 +1,8 @@
 <div id="viewDiv"></div>
 <div id="stats">
+  <div *ngIf="previousDuration">
+    Previous run: {{ previousDuration }}
+  </div>
   <div>
     <button *ngIf="!zooming" (click)="startZooming()">Start Zooming</button>
     <button *ngIf="zooming" (click)="stopZooming()">Stop Zooming</button>
