@@ -4,6 +4,9 @@
     <button *ngIf="!zooming" (click)="startZooming()">Start Zooming</button>
     <button *ngIf="zooming" (click)="stopZooming()">Stop Zooming</button>
   </div>
+  <div *ngIf="zooming">
+    {{ formattedDuration }}
+  </div>
   <hr>
   <div>
     {{tileLayers.length}} tile layers
@@ -11,26 +14,27 @@
   <div>
     <button (click)="addTileLayer()">Add Tile Layer</button>
   </div>
-<div>
+  <div>
     <button *ngIf="tileLayers.length > 0" (click)="removeTileLayer()">Remove Tile Layer</button>
   </div>
   <hr>
   <div>
     <label>Animate Zoom
-    <input type="checkbox" (click)="toggleAnimateZoom()" [checked]="animateZoom"/>
+      <input type="checkbox" (click)="toggleAnimateZoom()" [checked]="animateZoom" />
     </label>
   </div>
   <div>
     <label>Zoom via Click
-    <input type="checkbox" (click)="toggleZoomViaClick()" [checked]="zoomViaClick"/>
+      <input type="checkbox" (click)="toggleZoomViaClick()" [checked]="zoomViaClick" />
     </label>
   </div>
   <div>
-    <label><div>Zoom Interval</div>
-    <input [value]="zoomLen" (change)="changeZoomLen($event)">
+    <label>
+      <div>Zoom Interval</div>
+      <input [value]="zoomLen" (change)="changeZoomLen($event)">
     </label>
   </div>
   <p *ngIf="zooming">
-  Zoom level: {{ zoomLevel }}
+    Zoom level: {{ zoomLevel }}
   </p>
 </div>

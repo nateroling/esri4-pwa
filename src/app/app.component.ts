@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import BaseTileLayer from "@arcgis/core/layers/BaseTileLayer";
@@ -33,7 +33,7 @@ const scales = [
   295828763.795777,
 ]
 
-const startZoom = scales.length-1;
+const startZoom = scales.length - 1;
 
 @Component({
   selector: 'app-root',
@@ -51,29 +51,31 @@ export class AppComponent {
   zoomOutButton!: HTMLElement;
   zoomViaClick = true;
   zoomLen = 200;
+  zoomStart?: number;
+  formattedDuration = "0 seconds...";
 
   ngOnInit() {
-      this.map = new Map({
-         basemap: "streets"
-      });
+    this.map = new Map({
+      basemap: "streets"
+    });
 
-       this.view = new MapView({
-        container: "viewDiv",
-        map: this.map,
-        center: [-118.80500, 34.02700], // longitude, latitude
-        zoom: startZoom
-      });
+    this.view = new MapView({
+      container: "viewDiv",
+      map: this.map,
+      center: [-118.80500, 34.02700], // longitude, latitude
+      zoom: startZoom
+    });
 
-      watchUtils.whenEqualOnce(this.view, "ready", true, () => {
-        this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
-        this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
+    watchUtils.whenEqualOnce(this.view, "ready", true, () => {
+      this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
+      this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
 
-        // Start with one tile layer
-        this.addTileLayer();
+      // Start with one tile layer
+      this.addTileLayer();
 
-        // Start zooming on load
-        this.startZooming();
-      });
+      // Start zooming on load
+      this.startZooming();
+    });
 
   }
 
@@ -95,8 +97,10 @@ export class AppComponent {
     let delta = 1;
 
     this.zooming = true;
+    this.zoomStart = Date.now();
 
     const doZoom = () => {
+      this.formattedDuration = formatDuration(Date.now() - this.zoomStart!);
       let next = this.zoomLevel + delta;
       if (next <= 0 || next >= startZoom) {
         delta = -delta;
@@ -105,8 +109,8 @@ export class AppComponent {
 
       if (!this.zoomViaClick) {
         this.view.goTo(
-          { scale: scales[this.zoomLevel] },
-          { animate: this.animateZoom, duration: this.zoomLen / 2 }
+          {scale: scales[this.zoomLevel]},
+          {animate: this.animateZoom, duration: this.zoomLen / 2}
         )
       } else {
         if (delta === 1) {
@@ -126,14 +130,14 @@ export class AppComponent {
 
   clickZoomIn() {
     if (!this.zoomInButton) {
-        this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
+      this.zoomInButton = document.querySelector('[title="Zoom in"]')!;
     }
     this.zoomInButton?.click();
   }
 
   clickZoomOut() {
     if (!this.zoomOutButton) {
-        this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
+      this.zoomOutButton = document.querySelector('[title="Zoom out"]')!;
     }
     this.zoomOutButton?.click();
   }
@@ -171,5 +175,15 @@ class MyCustomTileLayer extends BaseTileLayer {
 
   override fetchTile() {
     return Promise.resolve(this.tileCanvas);
+  }
+}
+
+const formatDuration = (millis: number) => {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = Math.floor(((millis % 60000) / 1000));
+  if (minutes > 0) {
+    return `${minutes}m ${seconds}s`
+  } else {
+    return `${seconds}s`
   }
 }
